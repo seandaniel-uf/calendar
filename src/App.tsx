@@ -10,32 +10,74 @@ const App = (): JSX.Element => {
   const toggleModal = useStore((state) => state.toggleModal);
   const assignHost = useStore((state) => state.assignHost);
   const assignAlternateHost = useStore((state) => state.assignAlternateHost);
-  const alternateHost = useStore((state) => state.alternateHost);
 
   return (
     <ul>
-      <li onClick={toggleModal}>
-        <button>1</button>
+      <li className="calendar-square" onClick={toggleModal}>
+        <p>1</p>
+        <button></button>
         {modal && (
           <div className="modal-underlay">
             <ul className="modal">
-              {hosts.map((host) => {
+              {hosts.map((host: string, index: number) => {
                 return (
-                  <button value={host} onClick={assignHost}>
-                    {host}
-                  </button>
+                  <li key={index}>
+                    <button value={host} onClick={assignHost}>
+                      {host}
+                    </button>
+                  </li>
                 );
               })}
-              <button onClick={assignAlternateHost}>Alternate</button>
+              <li>
+                <button onClick={assignAlternateHost}>Alternate</button>
+              </li>
             </ul>
           </div>
         )}
       </li>
-      <li>
-        <button>2</button>
+      <li className="calendar-square" onClick={toggleModal}>
+        <p>2</p>
+        <button></button>
+        {modal && (
+          <div className="modal-underlay">
+            <ul className="modal">
+              {hosts.map((host: string, index: number) => {
+                return (
+                  <li key={index}>
+                    <button value={host} onClick={assignHost}>
+                      {host}
+                    </button>
+                  </li>
+                );
+              })}
+              <li>
+                <button onClick={assignAlternateHost}>Alternate</button>
+              </li>
+            </ul>
+          </div>
+        )}
       </li>
-      <li>
-        <button>3</button>
+      <li className="calendar-square" onClick={toggleModal}>
+        <p>3</p>
+        <button></button>
+        {modal && (
+          <div className="modal-underlay">
+            <ul className="modal">
+              {hosts.map((host: string, index: number) => {
+                return (
+                  <li key={index}>
+                    <button value={host} onClick={assignHost}>
+                      {host}
+                    </button>
+                  </li>
+                );
+              })}
+              <li>
+                <button onClick={assignAlternateHost}>Alternate</button>
+              </li>
+            </ul>
+          </div>
+        )}
       </li>
     </ul>
   );
