@@ -38,9 +38,13 @@ export const useStore = create<StoreState>((set, get) => ({
       get().host;
   },
   assignAlternateHost: (e: any) => {
-    // remove "No Standup" from alternate, no duplicate if host is already assigned
+    // remove "No Standup" from alternate, no duplicate if host is already assigned, no duplicate if alternateHost is already assigned
     const alternateHostArray = get().hosts.filter((string: string): boolean => {
-      return string !== "No Standup" && string !== get().host;
+      return (
+        string !== "No Standup" &&
+        string !== get().host &&
+        string !== get().alternateHost
+      );
     });
 
     set({
@@ -49,6 +53,8 @@ export const useStore = create<StoreState>((set, get) => ({
           Math.floor(Math.random() * alternateHostArray.length)
         ],
     });
+
+    console.log(get().alternateHost);
 
     e.target.parentElement.parentElement.parentElement.previousElementSibling.innerText =
       get().alternateHost;

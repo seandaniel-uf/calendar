@@ -1,17 +1,49 @@
-// get days
-// create <li's>
-// how to coordinate amount of days w/ day of week
+import { useState } from "react";
 
-import React from "react";
+interface Calendar {
+  weekdays: string[];
+  months: string[];
+  currentDate: string;
+}
 
-export const Calendar = () => {
-  // Month in JavaScript is 0-indexed (January is 0, February is 1, etc),
-  // but by using 0 as the day it will give us the last day of the prior
-  // month. So passing in 1 as the month number will return the last day
-  // of January, not February
-  function daysInMonth(month: number, year: number) {
-    return new Date(year, month, 0).getDate();
+export const Calendar = (): JSX.Element => {
+  const [calendarState, setCalendarState] = useState<Calendar>({
+    weekdays: [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Sunday",
+    ],
+    months: [
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
+    ],
+    currentDate: `${(new Date().getMonth(), new Date().getFullYear())}`,
+  });
+
+  {
+    console.log(calendarState.currentDate);
   }
-
-  return {};
+  return (
+    <>
+      <div className="calendar">
+        <div className="calendar-header">
+          <h2>{calendarState.currentDate}</h2>
+        </div>
+      </div>
+    </>
+  );
 };
