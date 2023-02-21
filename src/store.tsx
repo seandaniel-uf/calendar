@@ -7,14 +7,25 @@ interface StoreState {
   modal: boolean;
   host: string;
   alternateHost: string;
-  toggleModal: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  toggleModal: () => void;
   assignHost: (e: React.MouseEvent<HTMLButtonElement>) => void;
   assignAlternateHost: (e: React.MouseEvent<HTMLButtonElement>) => void;
   // calendar
   weekdays: string[];
-  months: string[];
-  currentDay: any;
-  changeCurrentDay: (day: any) => void;
+  months: [
+    {
+      monthName: string;
+      date: Date;
+    },
+    {
+      monthName: string;
+      date: Date;
+    },
+    {
+      monthName: string;
+      date: Date;
+    }
+  ];
 }
 
 export const useStore = create<StoreState>((set, get) => ({
@@ -31,13 +42,12 @@ export const useStore = create<StoreState>((set, get) => ({
   modal: false,
   host: "",
   alternateHost: "",
-  toggleModal: (e: any) => {
+  toggleModal: () => {
     set((state) => ({
       modal: !state.modal,
-    })),
-      e.stopPropagation();
+    }));
   },
-  // assignHost param/argument, do I need to assign this again?
+  // assignHost param/argument for value, not event
   assignHost: (e: any) => {
     set({
       host: e.target.value,
@@ -46,6 +56,7 @@ export const useStore = create<StoreState>((set, get) => ({
     e.target.parentElement.parentElement.parentElement.previousElementSibling.innerText =
       get().host;
   },
+  // assignHost param/argument for value, not event
   // what does this return if we are assigning state
   assignAlternateHost: (e: any): void => {
     // remove "No Standup" from alternate, no duplicate if host is already assigned, no duplicate if alternateHost is already assigned
@@ -78,25 +89,17 @@ export const useStore = create<StoreState>((set, get) => ({
     "Saturday",
   ],
   months: [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    {
+      monthName: "January",
+      date: new Date(2023, 0o0, 0o1, 12, 0o0, 0o0),
+    },
+    {
+      monthName: "February",
+      date: new Date(2023, 0o1, 0o1, 12, 0o0, 0o0),
+    },
+    {
+      monthName: "March",
+      date: new Date(2023, 0o2, 0o1, 12, 0o0, 0o0),
+    },
   ],
-  currentDay: new Date(),
-  // type param necessary?
-  changeCurrentDay: (day: any): void => {
-    set((state) => ({
-      ...state,
-      currentDay: new Date(day.year, day.month, day.number),
-    }));
-  },
 }));

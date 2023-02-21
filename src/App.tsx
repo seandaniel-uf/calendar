@@ -1,11 +1,11 @@
-import { useState } from "react";
 import "./App.css";
-import { Calendar } from "./components/Calendar";
+import { Months } from "./components/Months";
 
 const App = (): JSX.Element => {
   return (
     <>
-      <Calendar />
+      {/* @ts-expect-error Server Component */}
+      <Months />
     </>
   );
 };

@@ -6,7 +6,6 @@ export const CalendarDays = (props: any): JSX.Element => {
   const toggleModal = useStore((state) => state.toggleModal);
   const assignHost = useStore((state) => state.assignHost);
   const assignAlternateHost = useStore((state) => state.assignAlternateHost);
-  const changeCurrentDay = useStore((state) => state.changeCurrentDay);
 
   let firstDayOfMonth = new Date(
     props.day.getFullYear(),
@@ -42,38 +41,35 @@ export const CalendarDays = (props: any): JSX.Element => {
 
   return (
     <ul className="table-content">
-      {currentDays.map((day: any): JSX.Element => {
+      {currentDays.map((day: any, index: number): JSX.Element => {
         return (
-          <li>
-            <button
-              className={
-                "calendar-day" +
-                (day.currentMonth ? " current" : "") +
-                (day.selected ? " selected" : "")
-              }
-              onClick={() => changeCurrentDay(day)}
-            >
-              <p>{day.number}</p>
-              <button onClick={toggleModal}>Assign Host</button>
-              {modal && (
-                <div className="modal-underlay">
-                  <ul className="modal">
-                    {hosts.map((host: string, index: number) => {
-                      return (
-                        <li key={index}>
-                          <button value={host} onClick={assignHost}>
-                            {host}
-                          </button>
-                        </li>
-                      );
-                    })}
-                    <li>
-                      <button onClick={assignAlternateHost}>Alternate</button>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </button>
+          <li
+            key={index}
+            className={
+              "calendar-day" + (day.currentMonth ? " current" : "")
+              //+ (day.selected ? " selected" : "")
+            }
+          >
+            <p>{day.number}</p>
+            <button onClick={toggleModal}>Assign Host</button>
+            {modal && (
+              <div className="modal-underlay">
+                <ul className="modal">
+                  {hosts.map((host: string, index: number) => {
+                    return (
+                      <li key={index}>
+                        <button value={host} onClick={assignHost}>
+                          {host}
+                        </button>
+                      </li>
+                    );
+                  })}
+                  <li>
+                    <button onClick={assignAlternateHost}>Alternate</button>
+                  </li>
+                </ul>
+              </div>
+            )}
           </li>
         );
       })}
