@@ -6,7 +6,7 @@ import { useState } from "react";
 export const Months = () => {
   const months = useStore((state) => state.months);
 
-  const [index, setIndex] = useState<number>(0);
+  const [index, setIndex] = useState<number>(new Date().getMonth());
   const { monthName, date } = months[index];
 
   const previousCalendar = () => {
@@ -20,8 +20,10 @@ export const Months = () => {
   return (
     <>
       <section key={index} className="calendar">
+        <h2>
+          {monthName}, {date.getFullYear()}
+        </h2>
         <WeekdaysLegend />
-        <h2>{monthName}</h2>
         <CalendarDays day={date} />
       </section>
       <section>

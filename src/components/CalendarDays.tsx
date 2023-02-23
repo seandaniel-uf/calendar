@@ -1,4 +1,5 @@
 import { useStore } from "../store";
+import { useState } from "react";
 
 export const CalendarDays = (props: any): JSX.Element => {
   const hosts = useStore((state) => state.hosts);
@@ -34,6 +35,10 @@ export const CalendarDays = (props: any): JSX.Element => {
       number: firstDayOfMonth.getDate(),
       selected: firstDayOfMonth.toDateString() === props.day.toDateString(),
       year: firstDayOfMonth.getFullYear(),
+      // if current month and current day of the year === current date
+      currentMonthDay:
+        firstDayOfMonth.getMonth() === props.day.getMonth() &&
+        firstDayOfMonth.getDate() === new Date().getDate(),
     };
 
     currentDays.push(calendarDay);
@@ -46,8 +51,9 @@ export const CalendarDays = (props: any): JSX.Element => {
           <li
             key={index}
             className={
-              "calendar-day" + (day.currentMonth ? " current" : "")
-              //+ (day.selected ? " selected" : "")
+              "calendar-day" +
+              (day.currentMonth ? " current" : "") +
+              (day.currentMonthDay ? " selected" : "")
             }
           >
             <p>{day.number}</p>
