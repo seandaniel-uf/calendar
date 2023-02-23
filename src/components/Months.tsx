@@ -8,15 +8,15 @@ export const Months = () => {
 
   const [index, setIndex] = useState<number>(0);
   const { monthName, date } = months[index];
-  const indexMonths = months[index];
 
   const previousCalendar = () => {
-    setIndex(index - 1);
+    index !== 0 && setIndex(index - 1);
   };
 
   const nextCalendar = () => {
-    setIndex(index + 1);
+    index !== months.length - 1 && setIndex(index + 1);
   };
+
   return (
     <>
       <section key={index} className="calendar">

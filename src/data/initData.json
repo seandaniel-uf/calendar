@@ -1,0 +1,17 @@
+[
+   {
+      "hosts":[
+         "Sean",
+         "Larsen",
+         "Sahib",
+         "Toufic",
+         "Francis",
+         "Shareeza",
+         "No Standup"
+      ]
+   }
+]
+
+// structure the JSON, send to the API
+// backend will validate JSON
+// structure the data accordingly
