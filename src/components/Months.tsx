@@ -20,7 +20,7 @@ export const Months = () => {
   return (
     <>
       <section key={index} className="calendar">
-        <h2>
+        <h2 className="text-black font-bold underline">
           {monthName}, {date.getFullYear()}
         </h2>
         <WeekdaysLegend />

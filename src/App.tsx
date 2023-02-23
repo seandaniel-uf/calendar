@@ -1,4 +1,4 @@
-import "./App.css";
+import "./index.css";
 import { Months } from "./components/Months";
 
 const App = (): JSX.Element => {
