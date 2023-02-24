@@ -10,6 +10,7 @@
          "No Standup"
       ]
    }
+   
 ]
 
 // structure the JSON, send to the API

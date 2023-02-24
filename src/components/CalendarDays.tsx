@@ -1,5 +1,4 @@
 import { useStore } from "../store";
-import { useState } from "react";
 
 export const CalendarDays = (props: any): JSX.Element => {
   const hosts = useStore((state) => state.hosts);
@@ -45,22 +44,24 @@ export const CalendarDays = (props: any): JSX.Element => {
   }
 
   return (
-    <ul className="table-content">
+    <ul className="flex flex-wrap">
       {currentDays.map((day: any, index: number): JSX.Element => {
         return (
           <li
             key={index}
             className={
-              "calendar-day" +
+              "pb-[69px] px-[20px] w-[calc(100%/7)] border-slate-500 border-2 text-center calendar-day" +
               (day.currentMonth ? " current" : "") +
               (day.currentMonthDay ? " selected" : "")
             }
           >
-            <p>{day.number}</p>
-            <button onClick={toggleModal}>Assign Host</button>
+            <p className="pt-[5px] pb-[40px] text-right">{day.number}</p>
+            <button className="text-center" onClick={toggleModal}>
+              Assign Host
+            </button>
             {modal && (
-              <div className="modal-underlay">
-                <ul className="modal">
+              <div>
+                <ul>
                   {hosts.map((host: string, index: number) => {
                     return (
                       <li key={index}>

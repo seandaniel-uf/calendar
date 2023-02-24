@@ -12,7 +12,7 @@ interface StoreState {
   assignAlternateHost: (e: React.MouseEvent<HTMLButtonElement>) => void;
   // calendar
   weekdays: string[];
-  months: [
+  CalendarMonths: [
     {
       monthName: string;
       date: Date;
@@ -117,16 +117,8 @@ export const useStore = create<StoreState>((set, get) => ({
       get().alternateHost;
   },
   // calendar
-  weekdays: [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-  ],
-  months: [
+  weekdays: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"],
+  CalendarMonths: [
     {
       monthName: "January",
       date: new Date(2023, 0, 1, 12, 0, 0),
