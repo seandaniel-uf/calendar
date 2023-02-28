@@ -34,13 +34,14 @@ export const CalendarDays = (props: any): JSX.Element => {
       number: firstDayOfMonth.getDate(),
       selected: firstDayOfMonth.toDateString() === props.day.toDateString(),
       year: firstDayOfMonth.getFullYear(),
-      // if current month and current day of the year === current date && it is
       currentMonthDay:
         firstDayOfMonth.getMonth() === props.day.getMonth() &&
-        firstDayOfMonth.getDate() === new Date().getDate(),
+        firstDayOfMonth.getDate() === new Date().getDate() &&
+        firstDayOfMonth.getMonth() === new Date().getMonth(),
     };
 
     currentDays.push(calendarDay);
+    console.log(currentDays);
   }
 
   return (
