@@ -158,15 +158,15 @@ export const useStore = create<StoreState>((set, get) => ({
     },
     {
       monthName: "October",
-      date: new Date(2023, 10, 1, 12, 0, 0),
+      date: new Date(2023, 9, 1, 12, 0, 0),
     },
     {
       monthName: "November",
-      date: new Date(2023, 11, 1, 12, 0, 0),
+      date: new Date(2023, 10, 1, 12, 0, 0),
     },
     {
       monthName: "December",
-      date: new Date(2023, 12, 1, 12, 0, 0),
+      date: new Date(2023, 11, 1, 12, 0, 0),
     },
   ],
 }));

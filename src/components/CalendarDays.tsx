@@ -34,7 +34,7 @@ export const CalendarDays = (props: any): JSX.Element => {
       number: firstDayOfMonth.getDate(),
       selected: firstDayOfMonth.toDateString() === props.day.toDateString(),
       year: firstDayOfMonth.getFullYear(),
-      // if current month and current day of the year === current date
+      // if current month and current day of the year === current date && it is
       currentMonthDay:
         firstDayOfMonth.getMonth() === props.day.getMonth() &&
         firstDayOfMonth.getDate() === new Date().getDate(),
@@ -57,7 +57,7 @@ export const CalendarDays = (props: any): JSX.Element => {
           >
             <p className="pt-[5px] pb-[40px] text-right">{day.number}</p>
             <button
-              className="assign-host-btn text-center"
+              className="transition assign-host-btn text-center hover:text-indigo-900"
               onClick={() => toggleModal(index)}
             >
               Assign Host
