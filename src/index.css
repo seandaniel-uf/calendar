@@ -8,4 +8,24 @@
   body {
     @apply text-gray-300;
   }
+
+  .calendar-days li:nth-child(7n+1) .assign-host-btn,
+  .calendar-days li:nth-child(7n) .assign-host-btn {
+    @apply invisible;
+  }
+  
+  .selected {
+    @apply text-gray-900;
+    @apply bg-indigo-300;
+  }
+
+  .prev-next-month {
+    @apply bg-zinc-700/[0.4];
+  }
+  
+  .prev-next-month .assign-host-btn {
+    @apply invisible;
+  }
+
+
 }

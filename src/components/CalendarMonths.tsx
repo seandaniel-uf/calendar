@@ -38,7 +38,7 @@ export const CalendarMonths = () => {
           Next
         </button>
       </section>
-      <section>
+      <section className="border-2 border-slate-500">
         <CalendarWeekdays />
         <CalendarDays day={date} />
       </section>

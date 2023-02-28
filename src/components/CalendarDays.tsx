@@ -44,35 +44,47 @@ export const CalendarDays = (props: any): JSX.Element => {
   }
 
   return (
-    <ul className="flex flex-wrap">
+    <ul className="calendar-days flex flex-wrap">
       {currentDays.map((day: any, index: number): JSX.Element => {
         return (
           <li
             key={index}
             className={
               "pb-[69px] px-[20px] w-[calc(100%/7)] border-slate-500 border-2 text-center calendar-day" +
-              (day.currentMonth ? " current" : "") +
+              (day.currentMonth ? " current" : " prev-next-month") +
               (day.currentMonthDay ? " selected" : "")
             }
           >
             <p className="pt-[5px] pb-[40px] text-right">{day.number}</p>
-            <button className="text-center" onClick={toggleModal}>
+            <button
+              className="assign-host-btn text-center"
+              onClick={() => toggleModal(index)}
+            >
               Assign Host
             </button>
-            {modal && (
-              <div>
-                <ul>
+            {modal === index && (
+              <div className="bg-gray-900/[0.8] fixed w-[100%] z-[1010] h-[100%] top-[50%] left-[50%] transform translate-x-[-50%] translate-y-[-50%] flex justify-center items-center">
+                <ul className="max-w-[320px] w-[320px]">
                   {hosts.map((host: string, index: number) => {
                     return (
                       <li key={index}>
-                        <button value={host} onClick={assignHost}>
+                        <button
+                          className="text-gray-300 bg-indigo-900 py-[8px] px-[12px] border-indigo-900 border-2 hover:bg-gray-900 rounded-md transition mb-[20px]"
+                          value={host}
+                          onClick={assignHost}
+                        >
                           {host}
                         </button>
                       </li>
                     );
                   })}
                   <li>
-                    <button onClick={assignAlternateHost}>Alternate</button>
+                    <button
+                      className="text-gray-300 bg-indigo-900 py-[8px] px-[12px] border-indigo-900 border-2 hover:bg-gray-900 rounded-md transition"
+                      onClick={assignAlternateHost}
+                    >
+                      Alternate
+                    </button>
                   </li>
                 </ul>
               </div>

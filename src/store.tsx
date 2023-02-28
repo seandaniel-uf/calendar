@@ -4,10 +4,10 @@ import { create } from "zustand";
 interface StoreState {
   // hosts
   hosts: string[];
-  modal: boolean;
+  modal: number;
   host: string;
   alternateHost: string;
-  toggleModal: () => void;
+  toggleModal: (index: number) => void;
   assignHost: (e: React.MouseEvent<HTMLButtonElement>) => void;
   assignAlternateHost: (e: React.MouseEvent<HTMLButtonElement>) => void;
   // calendar
@@ -64,8 +64,6 @@ interface StoreState {
   ];
 }
 
-// import JSON, input into store
-
 export const useStore = create<StoreState>((set, get) => ({
   // hosts
   hosts: [
@@ -77,18 +75,21 @@ export const useStore = create<StoreState>((set, get) => ({
     "Shareeza",
     "No Standup",
   ],
-  modal: false,
+  // non value in mapping of numbers
+  modal: -1,
   host: "",
   alternateHost: "",
-  toggleModal: () => {
-    set((state) => ({
-      modal: !state.modal,
-    }));
+  toggleModal: (index) => {
+    set({
+      modal: index,
+    });
   },
+
   // assignHost param/argument for value, not event
   assignHost: (e: any) => {
     set({
       host: e.target.value,
+      modal: -1,
     });
 
     e.target.parentElement.parentElement.parentElement.previousElementSibling.innerText =
@@ -97,7 +98,6 @@ export const useStore = create<StoreState>((set, get) => ({
   // assignHost param/argument for value, not event
   // what does this return if we are assigning state
   assignAlternateHost: (e: any): void => {
-    // remove "No Standup" from alternate, no duplicate if host is already assigned, no duplicate if alternateHost is already assigned
     const alternateHostArray = get().hosts.filter((string: string): boolean => {
       return (
         string !== "No Standup" &&
@@ -111,6 +111,7 @@ export const useStore = create<StoreState>((set, get) => ({
         alternateHostArray[
           Math.floor(Math.random() * alternateHostArray.length)
         ],
+      modal: -1,
     });
 
     e.target.parentElement.parentElement.parentElement.previousElementSibling.innerText =
