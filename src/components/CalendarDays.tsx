@@ -41,7 +41,6 @@ export const CalendarDays = (props: any): JSX.Element => {
     };
 
     currentDays.push(calendarDay);
-    console.log(currentDays);
   }
 
   return (
