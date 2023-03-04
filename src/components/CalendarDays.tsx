@@ -12,7 +12,13 @@ export const CalendarDays = (props: any): JSX.Element => {
     props.day.getMonth(),
     1
   );
+  /* */
 
+
+
+
+
+  
   let weekdayOfFirstDay = firstDayOfMonth.getDay();
   let currentDays = [];
 
