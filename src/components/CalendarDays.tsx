@@ -42,15 +42,6 @@ export const CalendarDays = (props: any): JSX.Element => {
 
     currentDays.push(calendarDay);
 
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-  }
-
   return (
     <ul className="calendar-days flex flex-wrap">
       {currentDays.map((day: any, index: number): JSX.Element => {
