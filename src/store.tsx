@@ -4,7 +4,8 @@ import { create } from "zustand";
 interface StoreState {
   // hosts
   hosts: string[];
-  modal: number;
+  modalIndex: number;
+  modalOpen: boolean;
   host: string;
   alternateHost: string;
   toggleModal: (index: number) => void;
@@ -76,12 +77,14 @@ export const useStore = create<StoreState>((set, get) => ({
     "No Standup",
   ],
   // non value in mapping of numbers
-  modal: -1,
+  modalIndex: -1,
+  modalOpen: false,
   host: "",
   alternateHost: "",
   toggleModal: (index) => {
     set({
-      modal: index,
+      modalIndex: index,
+      modalOpen: true,
     });
   },
 
@@ -89,11 +92,8 @@ export const useStore = create<StoreState>((set, get) => ({
   assignHost: (e: any) => {
     set({
       host: e.target.value,
-      modal: -1,
+      modalOpen: false,
     });
-
-    e.target.parentElement.parentElement.parentElement.previousElementSibling.innerText =
-      get().host;
   },
   // assignHost param/argument for value, not event
   // what does this return if we are assigning state
@@ -111,7 +111,7 @@ export const useStore = create<StoreState>((set, get) => ({
         alternateHostArray[
           Math.floor(Math.random() * alternateHostArray.length)
         ],
-      modal: -1,
+      modalOpen: false,
     });
 
     e.target.parentElement.parentElement.parentElement.previousElementSibling.innerText =
@@ -122,51 +122,51 @@ export const useStore = create<StoreState>((set, get) => ({
   CalendarMonths: [
     {
       monthName: "January",
-      date: new Date(2023, 0, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 0, 1, 12, 0, 0),
     },
     {
       monthName: "February",
-      date: new Date(2023, 1, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 1, 1, 12, 0, 0),
     },
     {
       monthName: "March",
-      date: new Date(2023, 2, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 2, 1, 12, 0, 0),
     },
     {
       monthName: "April",
-      date: new Date(2023, 3, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 3, 1, 12, 0, 0),
     },
     {
       monthName: "May",
-      date: new Date(2023, 4, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 4, 1, 12, 0, 0),
     },
     {
       monthName: "June",
-      date: new Date(2023, 5, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 5, 1, 12, 0, 0),
     },
     {
       monthName: "July",
-      date: new Date(2023, 6, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 6, 1, 12, 0, 0),
     },
     {
       monthName: "August",
-      date: new Date(2023, 7, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 7, 1, 12, 0, 0),
     },
     {
       monthName: "September",
-      date: new Date(2023, 8, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 8, 1, 12, 0, 0),
     },
     {
       monthName: "October",
-      date: new Date(2023, 9, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 9, 1, 12, 0, 0),
     },
     {
       monthName: "November",
-      date: new Date(2023, 10, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 10, 1, 12, 0, 0),
     },
     {
       monthName: "December",
-      date: new Date(2023, 11, 1, 12, 0, 0),
+      date: new Date(new Date().getFullYear(), 11, 1, 12, 0, 0),
     },
   ],
 }));
